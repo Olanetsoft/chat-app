@@ -1,0 +1,28 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "Real time chat app with rooms",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olanetsoft/chat-app.git"
+  },
+  "author": "Idris Olubisi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Olanetsoft/chat-app/issues"
+  },
+  "homepage": "https://github.com/Olanetsoft/chat-app#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.27.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
