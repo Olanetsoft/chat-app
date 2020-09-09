@@ -1,5 +1,7 @@
-$(document).ready(function () {
-    $('#action_menu_btn').click(function () {
-        $('.action_menu').toggle();
-    });
-});
+const chatForm = document.getElementById('')
+
+const socket = io();
+
+socket.on('message', message => {
+    console.log(message)
+})
