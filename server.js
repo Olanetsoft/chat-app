@@ -23,10 +23,10 @@ io.on('connection', socket => {
         const user = userJoin(socket.id, username);
 
         // welcome current user
-        socket.emit('message', formatMessage(botName, 'Welcome to live chat 🎉🎉🎉🎉🎉🎉'));
+        socket.emit('message', formatMessage(botName.toUpperCase(), `${user.username.toUpperCase()} Welcome to live chat 🎉🎉🎉🎉🎉🎉`));
 
         // Broadcast when a user connects
-        socket.broadcast.emit('message', formatMessage(botName, `${user.username} joined the chat`));
+        socket.broadcast.emit('message', formatMessage(botName.toUpperCase(), `${user.username.toUpperCase()} joined the chat`));
 
     });
 
@@ -34,7 +34,7 @@ io.on('connection', socket => {
     socket.on('chatMessage', msg => {
         const user = getCurrentUser(socket.id);
 
-        io.emit('message', formatMessage(user.username, msg));
+        io.emit('message', formatMessage(user.username.toUpperCase(), msg));
     });
 
 
@@ -45,7 +45,7 @@ io.on('connection', socket => {
         if (user) {
             io.emit(
                 'message',
-                formatMessage(botName, `${user.username} has left the chat`));
+                formatMessage(botName.toUpperCase(), `${user.username.toUpperCase()} has left the chat`));
         }
     });
 });
