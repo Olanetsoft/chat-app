@@ -2,7 +2,7 @@ const chatForm = document.getElementById('chat-form');
 const chatMessages = document.getElementById('gbefun');
 
 // Get username and room from URL
-const { username, room } = Qs.parse(location.search, {
+const { username} = Qs.parse(location.search, {
     ignoreQueryPrefix: true
 });
 
@@ -11,7 +11,7 @@ const socket = io();
 
 // Join Chat Room
 socket.emit('joinRoom', {
-    username, room
+    username
 });
 
 // Output message from server
