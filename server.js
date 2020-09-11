@@ -23,7 +23,7 @@ io.on('connection', socket => {
         const user = userJoin(socket.id, username);
 
         // welcome current user
-        socket.emit('message', formatMessage(botName, 'Welcome to live chat 🎉'));
+        socket.emit('message', formatMessage(botName, 'Welcome to live chat 🎉🎉🎉🎉🎉🎉'));
 
         // Broadcast when a user connects
         socket.broadcast.emit('message', formatMessage(botName, `${user.username} joined the chat`));
