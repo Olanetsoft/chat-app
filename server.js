@@ -3,7 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
-const {userJoin, getCurrentUser} = require('./utils/users');
+const { userJoin, getCurrentUser, userLeave, getUsersCount } = require('./utils/users');
 
 
 const app = express();
@@ -23,7 +23,7 @@ io.on('connection', socket => {
         const user = userJoin(socket.id, username);
 
         // welcome current user
-        socket.emit('message', formatMessage(botName, 'Welcome to live chat'));
+        socket.emit('message', formatMessage(botName, 'Welcome to live chat 🎉'));
 
         // Broadcast when a user connects
         socket.broadcast.emit('message', formatMessage(botName, `${user.username} joined the chat`));
@@ -40,12 +40,13 @@ io.on('connection', socket => {
 
     // Runs when client disconnect
     socket.on('disconnect', () => {
-             const user = getCurrentUser(socket.id);
+        const user = userLeave(socket.id);
 
-             if(user){
-                io.emit('message', formatMessage(botName, `${user.username } had left the chat`));
-             }
-       
+        if (user) {
+            io.emit(
+                'message',
+                formatMessage(botName, `${user.username} has left the chat`));
+        }
     });
 });
 
